@@ -1,12 +1,12 @@
-# tic-init :sparkles:
+# w4-init :sparkles:
 
 This is a command line tool that acts as a companion to my
-[tic](https://github.com/peterhellberg/tic) module
+[w4](https://github.com/peterhellberg/w4) module
 for [Zig](https://ziglang.org/) :zap:
 
-`tic-init` is used to create a directory containing code that
+`w4-init` is used to create a directory containing code that
 allows you to promptly get started coding on a cart for the
-lovely little fantasy console [TIC-80](https://tic80.com/).
+lovely little fantasy console [WASM-4](https://wasm4.org/).
 
 The Zig build `.target` is declared as `.{ .cpu_arch = .wasm32, .os_tag = .wasi }`
 and `.optimize` is set to `.ReleaseSmall`
@@ -19,17 +19,16 @@ and `.optimize` is set to `.ReleaseSmall`
 (Requires you to have [Go](https://go.dev/) installed)
 
 ```sh
-go install github.com/peterhellberg/tic-init@latest
+go install github.com/peterhellberg/w4-init@latest
 ```
 
 ## Usage
 
 (Requires you to have an up to date (_nightly_) version of
-[Zig](https://ziglang.org/download/#release-master) installed,
-as well as the [PRO version](https://nesbox.itch.io/tic80) of TIC-80)
+[Zig](https://ziglang.org/download/#release-master) installed.
 
 ```sh
-tic-init mycart
+w4-init mycart
 cd mycart
 zig build run
 ```
