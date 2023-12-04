@@ -42,7 +42,7 @@ backup: bundle
 deploy: bundle
 	@ssh ${HOSTNAME} 'mkdir -p ${PUBLIC_PATH}'
 	@scp -q bundle/${NAME}.html ${HOSTNAME}:${PUBLIC_PATH}/index.html
-	@scp -q bundle/${NAME}.wasm ${HOSTNAME}:${PUBLIC_PATH}/cart.wasm
+	@scp -q bundle/${NAME}.wasm ${HOSTNAME}:${PUBLIC_PATH}/${NAME}.wasm
 	@echo "✔ Updated ${NAME} on ${GAME_URL}"
 	@scp -q bundle/${ARCHIVE} ${HOSTNAME}:${PUBLIC_PATH}/${ARCHIVE}
 	@echo "✔ Archive ${GAME_URL}/${ARCHIVE}"
