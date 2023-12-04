@@ -28,7 +28,8 @@ bundle: all
 	@w4 bundle zig-out/bin/cart.wasm --title ${TITLE} --html bundle/${NAME}.html 		# HTML
 	@w4 bundle zig-out/bin/cart.wasm --title ${TITLE} --linux bundle/${NAME}.elf 		# Linux (ELF)
 	@w4 bundle zig-out/bin/cart.wasm --title ${TITLE} --windows bundle/${NAME}.exe 	# Windows (PE32+)
-	@zip -juq bundle/${ARCHIVE} bundle/${NAME}.html bundle/${NAME}.elf bundle/${NAME}.exe
+	@cp zig-out/bin/cart.wasm bundle/${NAME}.wasm
+	@zip -juq bundle/${ARCHIVE} bundle/${NAME}.html bundle/${NAME}.elf bundle/${NAME}.exe bundle/${NAME}.wasm
 	@echo "✔ Updated bundle/${ARCHIVE}"
 
 .PHONY: backup
@@ -41,6 +42,7 @@ backup: bundle
 deploy: bundle
 	@ssh ${HOSTNAME} 'mkdir -p ${PUBLIC_PATH}'
 	@scp -q bundle/${NAME}.html ${HOSTNAME}:${PUBLIC_PATH}/index.html
+	@scp -q bundle/${NAME}.wasm ${HOSTNAME}:${PUBLIC_PATH}/cart.wasm
 	@echo "✔ Updated ${NAME} on ${GAME_URL}"
 	@scp -q bundle/${ARCHIVE} ${HOSTNAME}:${PUBLIC_PATH}/${ARCHIVE}
 	@echo "✔ Archive ${GAME_URL}/${ARCHIVE}"
