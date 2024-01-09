@@ -4,13 +4,16 @@ pub fn build(b: *std.Build) !void {
     const exe = b.addExecutable(.{
         .name = "cart",
         .root_source_file = .{ .path = "src/main.zig" },
-        .target = .{ .cpu_arch = .wasm32, .os_tag = .wasi },
+        .target = b.resolveTargetQuery(.{
+            .cpu_arch = .wasm32,
+            .os_tag = .wasi,
+        }),
         .optimize = .ReleaseSmall,
     });
 
-    exe.addModule("w4", b.dependency("w4", .{}).module("w4"));
+    exe.root_module.addImport("w4", b.dependency("w4", .{}).module("w4"));
 
-    exe.export_symbol_names = &[_][]const u8{
+    exe.root_module.export_symbol_names = &[_][]const u8{
         "start",
         "update",
     };
