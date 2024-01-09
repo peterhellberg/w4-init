@@ -4,8 +4,8 @@
     .paths = .{""},
     .dependencies = .{
         .w4 = .{
-            .url = "https://github.com/peterhellberg/w4/archive/refs/tags/v0.0.2.tar.gz",
-            .hash = "1220dc94527aa4f5a4a1c72e940f00f44b8537f3e2a75b3360a9e896b00f74dd7d24",
+            .url = "https://github.com/peterhellberg/w4/archive/refs/tags/v0.0.3.tar.gz",
+            .hash = "1220f3facfb96265a41f9099e8fa486f5161e15027679f393202c0e39b7e26f0ac3b",
         },
     },
 }
