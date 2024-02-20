@@ -3,7 +3,7 @@ NAME=w4-zig-cart
 ARCHIVE=${NAME}.zip
 GAME_PATH=games/${NAME}
 GAME_URL=https://${HOSTNAME}/${GAME_PATH}
-PUBLIC_PATH=~/public_html/${GAME_PATH}
+SERVER_PATH=~/public_html/${GAME_PATH}
 HOSTNAME=localhost
 BACKUP_PATH=/tmp/
 
@@ -40,9 +40,9 @@ backup: bundle
 
 .PHONY: deploy
 deploy: bundle
-	@ssh ${HOSTNAME} 'mkdir -p ${PUBLIC_PATH}'
-	@scp -q bundle/${NAME}.html ${HOSTNAME}:${PUBLIC_PATH}/index.html
-	@scp -q bundle/${NAME}.wasm ${HOSTNAME}:${PUBLIC_PATH}/${NAME}.wasm
+	@ssh ${HOSTNAME} 'mkdir -p ${SERVER_PATH}'
+	@scp -q bundle/${NAME}.html ${HOSTNAME}:${SERVER_PATH}/index.html
+	@scp -q bundle/${NAME}.wasm ${HOSTNAME}:${SERVER_PATH}/${NAME}.wasm
 	@echo "✔ Updated ${NAME} on ${GAME_URL}"
-	@scp -q bundle/${ARCHIVE} ${HOSTNAME}:${PUBLIC_PATH}/${ARCHIVE}
+	@scp -q bundle/${ARCHIVE} ${HOSTNAME}:${SERVER_PATH}/${ARCHIVE}
 	@echo "✔ Archive ${GAME_URL}/${ARCHIVE}"

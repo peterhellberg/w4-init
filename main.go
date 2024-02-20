@@ -13,7 +13,8 @@ import (
 var content embed.FS
 
 const (
-	defaultHostname   = "peter.tilde.team"
+	defaultHostname   = "assets.c7.se"
+	defaultServerPath = "/var/www/assets.c7.se"
 	defaultBackupPath = "/run/user/1000/gvfs/smb-share:server=diskstation.local,share=backups/Code/Fantasy/WASM-4"
 )
 
@@ -21,6 +22,7 @@ type config struct {
 	dir        string
 	title      string
 	hostname   string
+	serverPath string
 	backupPath string
 }
 
@@ -46,6 +48,7 @@ func run(args []string, stdout io.Writer) error {
 
 	flags.StringVar(&cfg.title, "title", "", "The title of the WASM-4 cart")
 	flags.StringVar(&cfg.hostname, "hostname", defaultHostname, "The hostname to deploy the cart bundle to")
+	flags.StringVar(&cfg.serverPath, "server-path", defaultServerPath, "The path on the server games should be uploaded to")
 	flags.StringVar(&cfg.backupPath, "backup-path", defaultBackupPath, "The path to backup the cart bundle to")
 
 	if err := flags.Parse(args[1:]); err != nil {
@@ -133,6 +136,7 @@ func replacer(cfg config, name string, data []byte) []byte {
 		data = replaceOne(data, `TITLE="w4-zig-cart"`, `TITLE="`+cfg.title+`"`)
 		data = replaceOne(data, `NAME=w4-zig-cart`, `NAME=`+cfg.dir)
 		data = replaceOne(data, `HOSTNAME=localhost`, `HOSTNAME=`+cfg.hostname)
+		data = replaceOne(data, `SERVER_PATH=~/public_html`, `SERVER_PATH=`+cfg.serverPath)
 		data = replaceOne(data, `BACKUP_PATH=/tmp/`, `BACKUP_PATH=`+cfg.backupPath)
 		return data
 	case "build.zig.zon", "README.md":
