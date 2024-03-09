@@ -17,5 +17,5 @@ zig build run
 
 Deploy:
 ```
-make Deploy
+make deploy
 ```
