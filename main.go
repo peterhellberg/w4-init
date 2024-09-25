@@ -13,8 +13,8 @@ import (
 var content embed.FS
 
 const (
-	defaultHostname   = "assets.c7.se"
-	defaultServerPath = "/var/www/assets.c7.se"
+	defaultHostname   = "play.c7.se"
+	defaultServerPath = "/var/www/play.c7.se"
 	defaultBackupPath = "/run/user/1000/gvfs/smb-share:server=diskstation.local,share=backups/Code/Fantasy/WASM-4"
 )
 
