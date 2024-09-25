@@ -1,9 +1,8 @@
 TITLE="w4-zig-cart"
 NAME=w4-zig-cart
 ARCHIVE=${NAME}.zip
-GAME_PATH=games/${NAME}
-GAME_URL=https://${HOSTNAME}/${GAME_PATH}
-SERVER_PATH=~/public_html/${GAME_PATH}
+GAME_URL=https://${HOSTNAME}/${NAME}
+SERVER_PATH=~/public_html/${NAME}
 HOSTNAME=localhost
 BACKUP_PATH=/tmp/
 
