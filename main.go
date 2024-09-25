@@ -27,16 +27,18 @@ type config struct {
 }
 
 func main() {
-	if err := run(os.Args, os.Stdout); err != nil {
+	if err := run(os.Args, os.Stderr); err != nil {
 		fmt.Fprintf(os.Stderr, "%s\n", err)
 		os.Exit(1)
 	}
 }
 
-func run(args []string, stdout io.Writer) error {
+func run(args []string, stderr io.Writer) error {
 	var cfg config
 
 	flags := flag.NewFlagSet(args[0], flag.ExitOnError)
+
+	flags.SetOutput(stderr)
 
 	flags.Usage = func() {
 		format := "Usage: %s [OPTION]... DIRECTORY\n\nOptions:\n"
@@ -93,7 +95,6 @@ func run(args []string, stdout io.Writer) error {
 			if err := writeFile(cfg, e.Name(), replacer); err != nil {
 				return err
 			}
-
 		} else {
 			if e.Name() == "src" {
 				srcEntries, err := content.ReadDir("content/src")
@@ -125,7 +126,7 @@ func writeFile(cfg config, name string, dataFuncs ...dataFunc) error {
 		data = dataFuncs[i](cfg, name, data)
 	}
 
-	return os.WriteFile(name, data, 0644)
+	return os.WriteFile(name, data, 0o644)
 }
 
 type dataFunc func(config, string, []byte) []byte
