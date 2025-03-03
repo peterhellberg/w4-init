@@ -1,5 +1,6 @@
 .{
-    .name = "w4-zig-cart",
+    .name = .w4_zig_cart,
+    .fingerprint = 0xd686ee44599802d1,
     .version = "0.0.0",
     .paths = .{""},
     .dependencies = .{
