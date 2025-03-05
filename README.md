@@ -34,6 +34,6 @@ zig build run
 ```
 
 > [!Note]
-> There is also a `zig build spy` command.
+> There is also a `zig build --watch` command that can be used to trigger automatic reload of the WASM-4 cart running in the browser when a file is changed.
 
 :seedling:
