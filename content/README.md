@@ -7,7 +7,7 @@ for use in [WASM-4](https://wasm4.org/)
 
 File watcher can be started by calling:
 ```sh
-zig build spy
+zig build --watch
 ```
 
 Running the cart in WASM-4:

@@ -37,17 +37,4 @@ pub fn build(b: *std.Build) !void {
 
     const run_step = b.step("run", "Run the cart in WASM-4");
     run_step.dependOn(&run_cmd.step);
-
-    const spy_cmd = b.addSystemCommand(&[_][]const u8{
-        "spy",
-        "--exc",
-        "zig-cache",
-        "--inc",
-        "**/*.zig",
-        "-q",
-        "clear-zig",
-        "build",
-    });
-    const spy_step = b.step("spy", "Run spy watching for file changes");
-    spy_step.dependOn(&spy_cmd.step);
 }

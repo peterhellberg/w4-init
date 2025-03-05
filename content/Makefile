@@ -9,9 +9,9 @@ BACKUP_PATH=/tmp/
 all:
 	zig build
 
-.PHONY: spy
-spy:
-	zig build spy
+.PHONY: watch
+watch:
+	zig build --watch
 
 .PHONY: run
 run:
