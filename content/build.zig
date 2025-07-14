@@ -1,14 +1,18 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) !void {
-    const exe = b.addExecutable(.{
-        .name = "cart",
+    const mod = b.createModule(.{
         .root_source_file = b.path("src/main.zig"),
         .target = b.resolveTargetQuery(.{
             .cpu_arch = .wasm32,
             .os_tag = .wasi,
         }),
         .optimize = .ReleaseSmall,
+    });
+
+    const exe = b.addExecutable(.{
+        .name = "cart",
+        .root_module = mod,
     });
 
     exe.root_module.addImport("w4", b.dependency("w4", .{}).module("w4"));
