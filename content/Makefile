@@ -19,8 +19,7 @@ run:
 
 .PHONY: clean
 clean:
-	rm -rf build
-	rm -rf bundle
+	rm -rf .zig-cache zig-out bundle
 
 .PHONY: bundle
 bundle: all
