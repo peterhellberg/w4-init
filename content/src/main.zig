@@ -14,15 +14,11 @@ export fn update() void {
     draw();
 }
 
-fn input() void {}
-
 fn draw() void {
     for ([4]w4.Box{
         .init(0, 0, 160, 40),
         .init(0, 40, 160, 40),
         .init(0, 80, 160, 40),
         .init(0, 120, 160, 40),
-    }, 0..) |box, i| {
-        box.fill(@intCast(i + 1));
-    }
+    }, 0..) |box, i| box.fill(@intCast(i + 1));
 }
