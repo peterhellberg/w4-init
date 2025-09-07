@@ -34,6 +34,8 @@ bundle: all
 backup: bundle
 	@mkdir -p ${BACKUP_PATH}/${NAME}
 	@cp bundle/${NAME}.* ${BACKUP_PATH}/${NAME}/
+	@cp build.zig* ${BACKUP_PATH}/${NAME}/
+	@cp -r --no-preserve=mode src ${BACKUP_PATH}/${NAME}/
 	@echo "✔ Backed up to ${BACKUP_PATH}/${NAME}"
 
 .PHONY: deploy
@@ -42,5 +44,8 @@ deploy: bundle
 	@scp -q bundle/${NAME}.html ${HOSTNAME}:${SERVER_PATH}/index.html
 	@scp -q bundle/${NAME}.wasm ${HOSTNAME}:${SERVER_PATH}/${NAME}.wasm
 	@echo "✔ Updated ${NAME} on ${GAME_URL}"
+	@scp -q build.zig* ${HOSTNAME}:${SERVER_PATH}/
+	@scp -qr src ${HOSTNAME}:${SERVER_PATH}/
+	@echo "✔ Sources ${GAME_URL}/src/"
 	@scp -q bundle/${ARCHIVE} ${HOSTNAME}:${SERVER_PATH}/${ARCHIVE}
 	@echo "✔ Archive ${GAME_URL}/${ARCHIVE}"
