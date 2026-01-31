@@ -10,17 +10,17 @@ pub fn build(b: *std.Build) !void {
         .optimize = .ReleaseSmall,
     });
 
+    mod.addImport("w4", b.dependency("w4", .{}).module("w4"));
+
+    mod.export_symbol_names = &[_][]const u8{
+        "start",
+        "update",
+    };
+
     const exe = b.addExecutable(.{
         .name = "cart",
         .root_module = mod,
     });
-
-    exe.root_module.addImport("w4", b.dependency("w4", .{}).module("w4"));
-
-    exe.root_module.export_symbol_names = &[_][]const u8{
-        "start",
-        "update",
-    };
 
     exe.entry = .disabled;
     exe.import_memory = true;
@@ -31,7 +31,10 @@ pub fn build(b: *std.Build) !void {
     b.installArtifact(exe);
 
     const run_cmd = b.addSystemCommand(&[_][]const u8{
-        "w4",
+        "npx",
+        "--loglevel=error",
+        "--yes",
+        "wasm4",
         "run",
         "--no-open",
         "--no-qr",
