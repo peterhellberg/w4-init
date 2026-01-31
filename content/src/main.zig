@@ -4,7 +4,12 @@ var mouse: w4.Mouse = .{};
 var button: w4.Button = .{};
 
 export fn start() void {
-    w4.palette(.{ 0x271d2c, 0x7b6960, 0xfff8ed, 0xe01f3f });
+    w4.palette(.{
+        0x2b2b26,
+        0x706b66,
+        0xa89f94,
+        0xe0dbcd,
+    });
 }
 
 export fn update() void {
@@ -15,10 +20,7 @@ export fn update() void {
 }
 
 fn draw() void {
-    for ([4]w4.Box{
-        .init(0, 0, 160, 40),
-        .init(0, 40, 160, 40),
-        .init(0, 80, 160, 40),
-        .init(0, 120, 160, 40),
-    }, 0..) |box, i| box.fill(@intCast(i + 1));
+    for (0..4) |i| w4.Box
+        .init(0, @intCast(i * 40), 160, 40)
+        .fill(@intCast(i + 1));
 }
