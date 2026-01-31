@@ -16,7 +16,7 @@ and `.optimize` is set to `.ReleaseSmall`
 
 ## Installation
 
-(Requires you to have [Go](https://go.dev/) installed)
+Requires you to have [Go](https://go.dev/) installed.
 
 ```sh
 go install github.com/peterhellberg/w4-init@latest
@@ -24,8 +24,10 @@ go install github.com/peterhellberg/w4-init@latest
 
 ## Usage
 
-(Requires you to have an up to date (_nightly_) version of
+Requires you to have an up to date (_nightly_) version of
 [Zig](https://ziglang.org/download/#release-master) installed.
+
+(As well as `npx`, which is part of [Node.js](https://nodejs.org/) these days)
 
 ```sh
 w4-init mycart
@@ -34,6 +36,8 @@ zig build run
 ```
 
 > [!Note]
-> There is also a `zig build --watch` command that can be used to trigger automatic reload of the WASM-4 cart running in the browser when a file is changed.
+> There is also a `zig build --watch` command that can 
+> be used to trigger automatic reload of the WASM-4 
+> cart running in the browser when a file is changed.
 
 :seedling:
