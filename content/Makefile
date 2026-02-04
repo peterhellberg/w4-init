@@ -11,7 +11,7 @@ all:
 
 .PHONY: watch
 watch:
-	zig build --watch
+	zig build --watch --debounce 50 --error-style minimal
 
 .PHONY: run
 run:
